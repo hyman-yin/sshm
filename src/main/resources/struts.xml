@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd">  
+  
+<struts> 
+	<!-- 配置action后缀名为action，只有请求是*.action的才会被struts2拦截 -->
+	<constant name="struts.action.extension" value="action" />  
+    
+    <package name="index" namespace="/" extends="struts-default">  
+        <action name="enterIndex" class="hyman.study.ssh.action.IndexAction" method="enterIndex">  
+            <result name="success">/WEB-INF/login.jsp</result>
+        </action>  
+
+        <action name="login" class="hyman.study.ssh.action.IndexAction" method="login">  
+            <result name="success">/WEB-INF/loginSuccess.jsp</result>
+            <result name="fail">/WEB-INF/loginFail.jsp</result>
+        </action>  
+
+    </package>  
+    
+</struts>  
