@@ -5,6 +5,15 @@
 <%@ taglib prefix="s" uri="/struts-tags" %> --%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <body>
-	登录成功，欢迎：${username }
+	<!-- request -->
+	登录成功，欢迎：${requestScope.username }
+	<hr></hr>
+	<!-- model -->
+	${requestScope.username }
+	<hr></hr>
+	
+	<!-- map -->
+	${requestScope.username }
+	
 </body>
 </html>

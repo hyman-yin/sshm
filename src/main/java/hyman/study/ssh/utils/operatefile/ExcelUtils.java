@@ -1,15 +1,11 @@
 package hyman.study.ssh.utils.operatefile;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Array;
 import java.util.Arrays;
 
 import jxl.Sheet;
 import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 /**
  * excel操作工具类
@@ -37,7 +33,7 @@ public class ExcelUtils {
 		System.out.println("sheets count: " + workbook.getNumberOfSheets());
 		System.out.println("sheets names: " + Arrays.toString(workbook.getSheetNames()));
 		Sheet sheet=workbook.getSheet(0);
-		
+		System.out.println(sheet);
 		
 	}
 }

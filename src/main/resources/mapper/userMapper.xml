@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hyman.study.ssh.mapper.TUserMapper">
+	<resultMap type="hyman.study.ssh.model.TUser" id="resultMap">
+		<result column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+	</resultMap>
+
+	<resultMap type="java.util.Map" id="baseMap">
+		<result column="username" property="username"/>
+		<result column="password" property="password"/>
+	</resultMap>
+
+
+	<!-- 表字段显式 -->
+	<sql id="userModelColumns">
+		u.id,
+		u.username,
+		u.passWord
+	</sql>
+
+	<!-- 根据 userName 查询 -->
+	<select id="getUserList" resultMap="resultMap">
+		SELECT
+		<include refid="userModelColumns" />
+		FROM tuser u
+	</select>
+
+	<select id="getUserById" resultMap="resultMap" parameterType="java.util.Map">
+		select 
+		<include refid="userModelColumns" />
+		from tuser u
+		where u.id=#{id}
+	</select>
+
+	<select id="getNamesAndPasswords" resultMap="baseMap">
+		select u.username,u.password from tuser u
+	</select>
+
+	<select id="getNameAndPasswordById" resultMap="baseMap" parameterType="java.util.Map">
+		select u.username,u.password from tuser u where u.id=#{id}
+	</select>
+
+
+
+
+</mapper> 

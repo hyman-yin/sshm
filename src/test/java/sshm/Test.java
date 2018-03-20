@@ -1,23 +1,26 @@
 package sshm;
 
-import hyman.study.ssh.utils.operatefile.PropertiesUtils;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Test {
-	public static void main(String[] args) {
-		try {
-			String filePath = "properties/test.properties";
-			System.out.println("username: " + PropertiesUtils.getPropertyValue(filePath, "username"));
-			System.out.println("password: " + PropertiesUtils.getPropertyValue(filePath, "password"));
-
-			
-			String keys[]={"username","usename2","password","password2"};
-			String values[]={"root11","root22","r1111","r2222"};
-			PropertiesUtils.setProperties(filePath, keys, values, true);
-
-			System.out.println("username: " + PropertiesUtils.getPropertyValue(filePath, "username"));
-			System.out.println("password: " + PropertiesUtils.getPropertyValue(filePath, "password"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public static void main(String[] args) throws InterruptedException {
+		ArrayList<String> list = new ArrayList<>();
+		list.add("1");
+		list.add("2");
+		list.add("2");
+		list.add("1");
+		
+		Set<String> set = new HashSet<>(list);
+		list.clear();
+		list.addAll(set);
+		System.out.println(list);
 	}
+	
+	
 }
+
+
+
+

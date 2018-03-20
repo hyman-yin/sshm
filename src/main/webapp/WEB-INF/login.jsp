@@ -3,15 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <body>
 	<h2>Login</h2>
-	<form action="login.action" method="post">
+	<form action="login.do" method="post">
 		<tabel>
 			<tr>
 				<td>username: </td>
-				<td><input type="text" name="username" /></td>
+				<td><input type="text" name="username2" /></td>
 			</tr>
 			<tr>
 				<td>password: </td>
-				<td><input type="password" name="password" /> </td>
+				<td><input type="password" name="password2" /> </td>
+			</tr>
+			<tr>
+				<td>age: </td>
+				<td><input type="text" name="age2" /> </td>
 			</tr>
 		</tabel>
 		<input type="submit" value="登录" />
