@@ -32,7 +32,7 @@ public class UserController {
 		}
 		return list;
 	}
-	
+
 	@RequestMapping("/getUserById.do")
 	@ResponseBody
 	public List<TUser> getUserById(String id){
