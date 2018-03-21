@@ -20,16 +20,20 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	
 	@RequestMapping("/getUserList.do")
 	@ResponseBody
 	public List<TUser> getUserList(){
+		long t1 = System.currentTimeMillis();
+		
 		List<TUser> list = userService.getUserList();
 		if(list!=null){
 			for(TUser user : list){
 				System.out.println(user);
 			}
 		}
+		long t2 = System.currentTimeMillis();
+		System.out.println("costed: "+(t2-t1) + " ms!");
+		
 		return list;
 	}
 

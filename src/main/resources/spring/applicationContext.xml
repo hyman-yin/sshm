@@ -29,6 +29,16 @@
 	<!-- 自动代理 -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	
+	<!-- 引入配置文件 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:redis/redis.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	
 	<!-- 配置数据源datasource -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>    
@@ -114,5 +124,47 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
     </aop:config>
 	 -->
+
+
+
+	<!-- 配置redis -->
+	<!-- 配置JedisPoolConfig实例 -->
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="${redis.maxIdle}"></property>
+		<property name="maxTotal" value="${redis.maxActive}"></property>
+		<property name="maxWaitMillis" value="${redis.maxWait}"></property>
+		<property name="testOnBorrow" value="${redis.testOnBorrow}"></property>
+	</bean>
+
+	<!-- 配置JedisConnectionFactory -->
+	<bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="hostName" value="${redis.host}"></property>
+		<property name="port" value="${redis.port}"></property>
+		<property name="port" value="${redis.port}"></property>
+		<property name="database" value="${redis.dbIndex}"></property>
+		<property name="poolConfig" ref="poolConfig"></property>
+	</bean>
+
+	<!-- 配置redisTemplate -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="connectionFactory"></property>
+	</bean>
+	
+	<!-- 配置redisCacheManager -->
+	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+		<constructor-arg name="redisOperations" ref="redisTemplate"></constructor-arg>
+		<property name="defaultExpiration" value="${redis.expiration}"></property>
+	</bean>
+	
+	<!-- 配置RedisCacheConfig -->
+	<bean id="redisCacheConfig" class="hyman.study.ssh.utils.RedisCacheConfig">
+		<constructor-arg ref="jedisConnectionFactory" />
+		<constructor-arg ref="redisTemplate" />
+		<constructor-arg ref="redisCacheManager" />
+	</bean>
+
+	<!-- redis配置完毕 -->
+
+
 
 </beans>
