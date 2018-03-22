@@ -23,8 +23,8 @@ public class UserManageDao {
 		return 0;
 	}
 
-	public void addUser() {
+	public int addUser() {
 		String sql = "insert into tuser(username,password) values ('hyman','qwer1234')";
-		sessionFactory.getCurrentSession().createSQLQuery(sql).executeUpdate();
+		return sessionFactory.getCurrentSession().createSQLQuery(sql).executeUpdate();
 	}
 }	

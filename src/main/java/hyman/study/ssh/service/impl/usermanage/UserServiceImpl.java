@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserManageDao userManageDao;
 	
+	public final static String USER_LIST_KEY = "allUserList";
 	
 	@Autowired
 	private DataBaseDao dataBaseDao;
@@ -68,16 +69,16 @@ public class UserServiceImpl implements UserService {
 		dataBaseDao.callFunction(name);
 	}
 	
-	@Cacheable(cacheNames={"hyman"},key="allUserList")
+	@Cacheable(key="#root.target.USER_LIST_KEY",cacheNames="hyman")
 	@Override
 	public List<TUser> getUserList() {
 		List<TUser> userList = tUserMapper.getUserList();
 		return userList;
 	}
 
-	@CacheEvict(value= {"getAllUser","getUserById","findUsers"},allEntries=true)//清空缓存，allEntries变量表示所有对象的缓存都清除
-	public void addUser(){
-		userManageDao.addUser();
+	@CacheEvict(value= {"#root.target.USER_LIST_KEY"},allEntries=true)//清空缓存，allEntries变量表示所有对象的缓存都清除
+	public int addUser(){
+		return userManageDao.addUser();
 	}
 	
 	

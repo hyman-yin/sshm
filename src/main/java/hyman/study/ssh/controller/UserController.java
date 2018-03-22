@@ -30,11 +30,18 @@ public class UserController {
 			for(TUser user : list){
 				System.out.print(user.getId());
 			}
+			System.out.println();
 		}
 		long t2 = System.currentTimeMillis();
 		System.out.println("costed: "+(t2-t1) + " ms!");
 		
 		return list;
+	}
+	
+	@RequestMapping("/addUser.do")
+	@ResponseBody
+	public int addUser(){
+		return userService.addUser();
 	}
 
 	@RequestMapping("/getUserById.do")
