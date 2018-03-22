@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -37,6 +38,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserManageDao userManageDao;
 	
+	
 	@Autowired
 	private DataBaseDao dataBaseDao;
 	
@@ -65,14 +67,20 @@ public class UserServiceImpl implements UserService {
 	public void callFunction(String name) {
 		dataBaseDao.callFunction(name);
 	}
-
-	@Cacheable("getUserList")
+	
+	@Cacheable(cacheNames={"hyman"},key="allUserList")
 	@Override
 	public List<TUser> getUserList() {
 		List<TUser> userList = tUserMapper.getUserList();
 		return userList;
 	}
 
+	@CacheEvict(value= {"getAllUser","getUserById","findUsers"},allEntries=true)//清空缓存，allEntries变量表示所有对象的缓存都清除
+	public void addUser(){
+		userManageDao.addUser();
+	}
+	
+	
 	
 	@Override
 	public List<TUser> getUserById(Map<String, Object> map) {

@@ -28,7 +28,7 @@ public class UserController {
 		List<TUser> list = userService.getUserList();
 		if(list!=null){
 			for(TUser user : list){
-				System.out.println(user);
+				System.out.print(user.getId());
 			}
 		}
 		long t2 = System.currentTimeMillis();

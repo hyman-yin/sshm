@@ -16,7 +16,7 @@ public class DataBaseDao {
 	//调用无返回值存储过程
 	public void callProcNoResult(String name){
 		String sql="{call test_proc_no_result(?)}";
-		sessionFactory.getCurrentSession().createNativeQuery(sql).setParameter(1, name).executeUpdate();
+		sessionFactory.getCurrentSession().createSQLQuery(sql).setParameter(1, name).executeUpdate();
 	}
 	
 	
@@ -33,7 +33,7 @@ public class DataBaseDao {
 	//调用函数
 	public Object callFunction(String name){
 		String sql="select test_func(?) from dual";
-		return sessionFactory.getCurrentSession().createNativeQuery(sql)
+		return sessionFactory.getCurrentSession().createSQLQuery(sql)
 				.setParameter(1, name).uniqueResult();
 	}
 	

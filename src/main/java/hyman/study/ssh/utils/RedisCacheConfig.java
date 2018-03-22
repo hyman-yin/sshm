@@ -11,48 +11,58 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
-@Configuration
-@EnableCaching
+@Configuration  
+@EnableCaching 
 public class RedisCacheConfig extends CachingConfigurerSupport {
-	private volatile JedisConnectionFactory jedisConnectionFactory;
-	private volatile RedisTemplate<String,String> redisTemplate;
-	private volatile RedisCacheManager redisCacheManager;
-	
-	public RedisCacheConfig() {
-		super();
-	}
-	
-	public RedisCacheConfig(JedisConnectionFactory jedisConnectionFactory,RedisTemplate<String,String> redisTemplate,RedisCacheManager redisCacheManager){
-		this.jedisConnectionFactory=jedisConnectionFactory;
-		this.redisTemplate=redisTemplate;
-		this.redisCacheManager=redisCacheManager;
-	}
+    private volatile JedisConnectionFactory jedisConnectionFactory;
+    private volatile RedisTemplate<String, String> redisTemplate;
+    private volatile RedisCacheManager redisCacheManager;
 
-	public JedisConnectionFactory getJedisConnectionFactory() {
-		return jedisConnectionFactory;
-	}
+    public RedisCacheConfig() {
+        super();
+    }
 
-	public RedisTemplate<String, String> getRedisTemplate() {
-		return redisTemplate;
-	}
+    /**
+     * 带参数的构造方法 初始化所有的成员变量
+     * 
+     * @param jedisConnectionFactory
+     * @param redisTemplate
+     * @param redisCacheManager
+     */
+    public RedisCacheConfig(JedisConnectionFactory jedisConnectionFactory, RedisTemplate<String, String> redisTemplate,
+            RedisCacheManager redisCacheManager) {
+    	System.out.println("构造函数............");
+        this.jedisConnectionFactory = jedisConnectionFactory;
+        this.redisTemplate = redisTemplate;
+        this.redisCacheManager = redisCacheManager;
+    }
 
-	public RedisCacheManager getRedisCacheManager() {
-		return redisCacheManager;
-	}
+    public JedisConnectionFactory getJedisConnecionFactory() {
+        return jedisConnectionFactory;
+    }
 
-	@Bean
-	public KeyGenerator customkeyGenerator(){
-		return new KeyGenerator() {
-			@Override
-			public Object generate(Object target, Method method, Object... objects) {
-				StringBuffer sb = new StringBuffer();
-				sb.append(target.getClass().getName());
-				sb.append(method.getName());
-				for(Object object : objects){
-					sb.append(object.toString());
-				}
-				return sb.toString();
-			}
-		};
-	}
+    public RedisTemplate<String, String> getRedisTemplate() {
+        return redisTemplate;
+    }
+
+    public RedisCacheManager getRedisCacheManager() {
+        return redisCacheManager;
+    }
+
+    @Bean
+    public KeyGenerator customKeyGenerator() {
+    	System.out.println("customKeyGenerator............");
+        return new KeyGenerator() {
+            @Override
+            public Object generate(Object target, Method method, Object... objects) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(target.getClass().getName());
+                sb.append(method.getName());
+                for (Object obj : objects) {
+                    sb.append(obj.toString());
+                }
+                return sb.toString();
+            }
+        };
+    }
 }
