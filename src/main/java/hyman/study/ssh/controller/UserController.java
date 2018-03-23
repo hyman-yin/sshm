@@ -50,7 +50,7 @@ public class UserController {
 		Map<String,Object> map = new HashMap<>();
 		map.put("id", id);
 		
-		List<TUser> list = userService.getUserById(map);
+		List<TUser> list = userService.getUserByMap(map);
 		if(list!=null){
 			for(TUser user : list){
 				System.out.println(user);

@@ -343,5 +343,35 @@
 		    <version>3.6.0</version>
 		</dependency>
 		
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-core -->
+		<dependency>
+		    <groupId>org.apache.activemq</groupId>
+		    <artifactId>activemq-core</artifactId>
+		    <version>5.7.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-broker -->
+		<dependency>
+		    <groupId>org.apache.activemq</groupId>
+		    <artifactId>activemq-broker</artifactId>
+		    <version>5.15.3</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-client -->
+		<dependency>
+		    <groupId>org.apache.activemq</groupId>
+		    <artifactId>activemq-client</artifactId>
+		    <version>5.15.3</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.geronimo.specs/geronimo-jms_1.1_spec -->
+		<dependency>
+		    <groupId>org.apache.geronimo.specs</groupId>
+		    <artifactId>geronimo-jms_1.1_spec</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+		
+		
 	</dependencies>
 </project>

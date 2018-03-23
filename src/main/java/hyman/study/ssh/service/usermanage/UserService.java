@@ -11,7 +11,7 @@ public interface UserService {
 	public void callHasResultProc(String name);
 	public void callFunction(String name);
 	public List<TUser> getUserList();
-	public List<TUser> getUserById(Map<String, Object> map);
+	public List<TUser> getUserByMap(Map<String, Object> map);
 	public List<Map<String,Object>> getNamesAndPasswords();
 	public List<Map<String,Object>> getNameAndPasswordById(Map<String, Object> map);
 	public int addUser();

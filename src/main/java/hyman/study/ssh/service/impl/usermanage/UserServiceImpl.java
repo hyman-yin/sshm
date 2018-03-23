@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 	
 	
 	@Override
-	public List<TUser> getUserById(Map<String, Object> map) {
+	public List<TUser> getUserByMap(Map<String, Object> map) {
 		return tUserMapper.getUserById(map);
 	}
 
