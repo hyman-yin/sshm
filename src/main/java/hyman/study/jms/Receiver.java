@@ -47,6 +47,10 @@ public class Receiver {
 			System.out.println("name3: "+message3.getStringProperty("name"));
 			System.out.println("text3: "+tMessage3.getText());
 			
+//			message.acknowledge();
+//			message2.acknowledge();
+//			message3.acknowledge();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

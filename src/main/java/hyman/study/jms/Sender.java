@@ -24,7 +24,8 @@ public class Sender {
 			connection.start();
 			
 			//是否启用事务，是否自动接受请求
-			Session session =connection.createSession(false, Session.AUTO_ACKNOWLEDGE); 
+//			Session session =connection.createSession(false, Session.AUTO_ACKNOWLEDGE); 
+			Session session =connection.createSession(false, Session.CLIENT_ACKNOWLEDGE); 
 			
 			Destination destination = session.createQueue("firstQueue");
 			Destination destination2 = session.createQueue("secondQueue");
