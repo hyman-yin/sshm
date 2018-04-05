@@ -22,12 +22,12 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class ImportCSV2MySQLUtils {
 	private static final String driver_name="com.mysql.cj.jdbc.Driver";
-	private static final String url="jdbc:mysql://localhost:3306/sshm?serverTimezone=UTC";
+	private static final String url="jdbc:mysql://localhost:3306/ili?serverTimezone=UTC";
 	private static final String username="root";
 	private static final String password="qwer1234";
-	private static final String table_name="test";//要插入的表名
-	private static final int column_count=6;//要插入的表的列数，因为csv可能出现中间或者结尾没有数据的情况，此种情况下直接插入会报错
-	private static final String filepath="D:/test/test.csv";//要插入的csv文件位置
+	private static final String table_name="billcnt_month";//要插入的表名
+	private static final int column_count=4;//要插入的表的列数，因为csv可能出现中间或者结尾没有数据的情况，此种情况下直接插入会报错
+	private static final String filepath="H:/data/billcnt_month.csv";//要插入的csv文件位置
 	
 	public static void main(String[] args) throws InterruptedException {
 		long t1  = System.currentTimeMillis();
@@ -96,7 +96,7 @@ public class ImportCSV2MySQLUtils {
 				if(StringUtils.isBlank(str[i])){
 					sb.append("'',");
 				} else {
-					sb.append("'").append(str[i]).append("',");
+					sb.append(str[i]).append(",");
 				}
 			}
 			int le=0;

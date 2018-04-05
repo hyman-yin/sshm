@@ -15,4 +15,8 @@ public interface UserService {
 	public List<Map<String,Object>> getNamesAndPasswords();
 	public List<Map<String,Object>> getNameAndPasswordById(Map<String, Object> map);
 	public int addUser();
+	public TUser getUser(Integer id);
+	public void deleteUser(Integer id);
+	public void saveUser(TUser user);
+	public void updateUser(TUser user);
 }

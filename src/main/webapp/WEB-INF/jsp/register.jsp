@@ -5,6 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+	function add(){
+		var t = parseInt(document.getElementById("test").value);
+		t=t+1;
+		document.getElementById("test").value=t;
+	}
+</script>
 </head>
 <body>
 	<h1>Register...</h1>
@@ -24,6 +32,25 @@
 	<%-- <c:if test="${not empty requestScope.msg }"> --%>
 		${requestScope.msg }
 	<!-- </c:if> -->
+	<hr>
+	<div style="margin-top:20px;background-color: #ddd">
+		<input type="text" name="test" id="test" value="1" />
+		<input type="button" id="btn" value="add" onclick="add()" />
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </body>
 </html>

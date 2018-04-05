@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import hyman.study.ssh.dao.dboperate.DataBaseDao;
+import hyman.study.ssh.dao.normal.UserDao;
 import hyman.study.ssh.dao.usermanage.UserManageDao;
 import hyman.study.ssh.mapper.TUserMapper;
 import hyman.study.ssh.model.TUser;
@@ -33,18 +33,18 @@ import hyman.study.ssh.service.usermanage.UserService;
  * 2018年3月21日 下午9:18:04
  */
 @Service("userService")
-@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+@Transactional
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserManageDao userManageDao;
+	
+	@Autowired
+	private UserDao userDao;
 	
 	public final static String USER_LIST_KEY = "allUserList";
 	
 	@Autowired
 	private DataBaseDao dataBaseDao;
-	
-//	@Autowired
-//	private UserDao userDao;
 	
 	@Autowired
 	private TUserMapper tUserMapper;
@@ -97,4 +97,34 @@ public class UserServiceImpl implements UserService {
 	public List<Map<String,Object>> getNameAndPasswordById(Map<String, Object> map) {
 		return tUserMapper.getNameAndPasswordById(map);
 	}
+
+	@Override
+	public TUser getUser(Integer id) {
+		return userDao.get(id);
+	}
+
+	@Override
+	public void deleteUser(Integer id) {
+		userDao.delete(id);
+	}
+
+	@Override
+	public void saveUser(TUser user) {
+		TUser userNew = new TUser();
+		userNew.setUsername(user.getUsername());
+		userNew.setPassword(user.getPassword());
+		userDao.save(userNew);
+	}
+	
+	
+	@Override
+	public void updateUser(TUser user) {
+		TUser userNew = userDao.get(user.getId());
+		userNew.setUsername(user.getUsername());
+		userNew.setPassword(user.getPassword());
+		userDao.update(userNew);
+	}
+	
+	
+	
 }
