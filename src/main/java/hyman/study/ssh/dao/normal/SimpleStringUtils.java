@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SuppressWarnings("unchecked")
-public class IrisStringUtils {
+public class SimpleStringUtils {
 	/**
 	 * 用途：字符串是否为非空
 	 * 
